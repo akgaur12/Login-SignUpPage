@@ -123,5 +123,27 @@ class Form:
         btn2 = Button(f2, text='SignUp', font=("Microsoft YaHei", 11), cursor='hand2', bd=0, bg='#ffffff', fg='blue', activebackground='#ffffff', activeforeground='green', relief='flat', command=self.home)
         btn2.place(x=305,y=478,)
 
+    def otp(self):
+        self.otp = str(randint(10000, 99999))
+        msg = 'Hello, your OTP is '+str(self.otp)
+        Sender = 'emailid@gmail.com' # WRITE YOUR EMAIL ID HERE
+        Receiver =  self.user_email.get()
+
+        message = EmailMessage()
+        message.set_content(msg)
+        message['Subject'] = "Resistration Confirmation"
+        message['From'] = Sender
+        message['To'] = Receiver
+
+        try:
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.starttls()
+            server.login(Sender,'GENERATE 6-digit random number FROM EMAIL SETTING')
+            #server.sendmail(Sender, Receiver, msg)
+            server.send_message(message)
+            server.quit()
+        except Exception:
+            messagebox.showerror('Email','Invalid Email ID')
+
 
 
