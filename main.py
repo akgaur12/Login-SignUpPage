@@ -86,7 +86,42 @@ class Form:
         en.place(x=10, y=6, width=enw,)
         return en
 
+    def loginPage(self):
+        f2 = Frame(self.root, )
+        f2.place(x=0, y=0, width=1536, height=864)
         
+        img1 = PhotoImage(file='bg.png')
+        l = Label(f2, image=img1, bd=0,)
+        l.image_names = img1
+        l.place(x=0, y=0)
+
+        f2 = Frame(f2, bg='#ffffff')
+        f2.place(x=503, y=90, width=530, height=580)
+
+        img1 = PhotoImage(file='img1.png')
+        lbl = Label(f2, image=img1, bg='#ffffff', bd=0,)
+        lbl.image_names = img1
+        lbl.place(x=215, y=48,)
+        Label(f2, text='Login', font=("Microsoft YaHei", 18), bg='white', fg='brown').place(x=240, y=160)
+
+        self.username = StringVar()
+        en_username = self.lblFrame(f2, txt="Username (Email)", X=140, Y=225, w=260, enw=245)
+        en_username.config(textvariable=self.username)
+
+        self.user_pass = StringVar()
+        en_userpass = self.lblFrame(f2, txt="Password", X=140, Y=300, w=260, enw=245)
+        en_userpass.config(textvariable=self.user_pass, show="*")
+
+        btn_resetpass = Button(f2, text='Forgot Password?', font=("Microsoft YaHei", 10), cursor='hand2', bd=0, relief='flat', bg='#ffffff', fg='red', activebackground='white', command=self.reset_password_page)
+        btn_resetpass.place(x=140,y=360)
+
+        btn = Button(f2, text='Login', font=("Microsoft YaHei", 14), bg="green", fg='white', bd=1, relief='flat', command=self.login)
+        btn.place(x=212,y=416, width=125, height=40)
+
+        Label(f2, text='Create Account.', font=("Microsoft YaHei", 11), bg='#ffffff' ).place(x=175,y=480)
+
+        btn2 = Button(f2, text='SignUp', font=("Microsoft YaHei", 11), cursor='hand2', bd=0, bg='#ffffff', fg='blue', activebackground='#ffffff', activeforeground='green', relief='flat', command=self.home)
+        btn2.place(x=305,y=478,)
 
 
 
