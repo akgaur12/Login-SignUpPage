@@ -79,6 +79,13 @@ class Form:
         btn_login = Button(f2, text='Login', font=("Microsoft YaHei", 11), cursor='hand2', bd=0, bg='#ffffff', fg='blue', activebackground='#ffffff', activeforeground='green', relief='flat', command=self.loginPage)
         btn_login.place(x=382,y=538,)
 
+    def lblFrame(self, wn, txt, X, Y, w=220, h=56, enw = 200):
+        lf = LabelFrame(wn, text=txt, font=('Microsoft YaHei', 10,), bg="white",)
+        lf.place(x=X, y=Y, width=w, height=h,)
+        en = Entry(lf, font=('Microsoft YaHei', 12,), bd=0, bg="white")
+        en.place(x=10, y=6, width=enw,)
+        return en
+
         
 
 
