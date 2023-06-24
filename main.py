@@ -27,7 +27,7 @@ class Form:
         l.image_names = img1
         l.place(x=0, y=0, )
 
-        img = Image.open("10.png")
+        img = Image.open("image.png")
         imgr = img.resize((360, 480))
         img2 = ImageTk.PhotoImage(imgr)
 
@@ -93,7 +93,7 @@ class Form:
         f2 = Frame(self.root, )
         f2.place(x=0, y=0, width=1536, height=864)
         
-        img1 = PhotoImage(file='bg.png')
+        img1 = PhotoImage(file='background_image.png')
         l = Label(f2, image=img1, bd=0,)
         l.image_names = img1
         l.place(x=0, y=0)
@@ -101,7 +101,7 @@ class Form:
         f2 = Frame(f2, bg='#ffffff')
         f2.place(x=503, y=90, width=530, height=580)
 
-        img1 = PhotoImage(file='img1.png')
+        img1 = PhotoImage(file='logo_image.png')
         lbl = Label(f2, image=img1, bg='#ffffff', bd=0,)
         lbl.image_names = img1
         lbl.place(x=215, y=48,)
