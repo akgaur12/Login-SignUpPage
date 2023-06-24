@@ -245,6 +245,37 @@ class Form:
         b2.place(x=5, y=5)
 
 
-    
+    def resetPassword(self):
+        e = self.user_email.get()
+        p = self.password.get()
+        cp = self.cpassword.get()
+        
+        if e!='' and p!='' and cp!='':
+            if p == cp:
+                if self.otp == self.user_otp.get():
+                    db = sqlite3.connect("User2.db")
+                    cr = db.cursor()
+                    cr.execute(" UPDATE info SET password='"+p+"' WHERE email=='"+e+"' ")
+                    db.commit()
+
+                    messagebox.showinfo('Login', 'Password Changed Successfully')
+                    self.user_email.set('')
+                    self.password.set('')
+                    self.cpassword.set('')
+                    self.user_otp.set('')
+                    db.close()
+
+                else:
+                    messagebox.showwarning('OTP', 'Enter Wrong OTP')
+            else:
+                messagebox.showwarning('Password', 'Password does not match')
+        else:
+            messagebox.showwarning('Login', 'Please Enter Email and Password')
+
+        
+
+
+#main function
+ob = Form()
 
 
