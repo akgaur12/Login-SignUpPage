@@ -163,7 +163,7 @@ class Form:
                 if p==cp: 
                     if self.otp==self.user_otp.get():
                         try:
-                            db = sqlite3.connect("User2.db")
+                            db = sqlite3.connect("UserDatabase.db")
                             cr = db.cursor()
                             cr.execute("INSERT INTO info VALUES('"+fn+"', '"+ln+"', '"+p+"', '"+ph+"', '"+e+"')")
                             db.commit()
@@ -195,7 +195,7 @@ class Form:
         p = self.user_pass.get()
 
         if n!='' and p!='':
-            db = sqlite3.connect("User2.db")
+            db = sqlite3.connect("UserDatabase.db")
             cr = db.cursor()
             r = cr.execute("SELECT * FROM info WHERE email=='"+n+"' AND password=='"+p+"'")
             
@@ -253,7 +253,7 @@ class Form:
         if e!='' and p!='' and cp!='':
             if p == cp:
                 if self.otp == self.user_otp.get():
-                    db = sqlite3.connect("User2.db")
+                    db = sqlite3.connect("UserDatabase.db")
                     cr = db.cursor()
                     cr.execute(" UPDATE info SET password='"+p+"' WHERE email=='"+e+"' ")
                     db.commit()
