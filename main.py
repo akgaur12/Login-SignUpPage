@@ -189,6 +189,7 @@ class Form:
         else:
             messagebox.showwarning('CheckBox', 'Please Agree Terms and Conditions')
 
+    
     def login(self): 
         n = self.username.get()
         p = self.user_pass.get()
@@ -211,5 +212,39 @@ class Form:
             messagebox.showwarning('Login', 'Please Enter Email and Password')
 
 
+    def reset_password_page(self):
+        f2 = Frame(self.root, )
+        f2.place(x=0, y=0, width=1536, height=864)
+        
+        img1 = PhotoImage(file='bg.png')
+        lbl_bg = Label(f2, image=img1, bd=0,)
+        lbl_bg.image_names = img1
+        lbl_bg.place(x=0, y=0)
+
+        f3 = Frame(f2, bg='#ffffff')
+        f3.place(x=503, y=90, width=530, height=580)
+
+        Label(f3, text="Change Password", font=("Microsoft YaHei", 18, 'bold'), bg='white', fg='red').place(x=150, y=40)
+
+        en_username = self.lblFrame(f3, txt="Username (Email)", X=140, Y=120, w=260, enw=245)
+        en_newpass = self.lblFrame(f3, txt="New Password", X=140, Y=195, w=260, enw=245)
+        en_cnewpass = self.lblFrame(f3, txt="Confirm Password", X=140, Y=270, w=260, enw=245)
+        en_user_otp = self.lblFrame(f3, txt="Enter OTP", X=140, Y=345, w=260, enw=245)
+        
+        en_username.config(textvariable=self.user_email)
+        en_newpass.config(textvariable=self.password)
+        en_cnewpass.config(textvariable=self.cpassword, show="*")
+        en_user_otp.config(textvariable=self.user_otp)
+
+        b1 = Button(f3 ,text=" Get OTP ", font=('Microsoft YaHei', 10,), relief='groove', bg='#92EA7A', command=self.otp)
+        b1.place(x=230, y=428,)
+        b2 = Button(f3 ,text=" Change Password ", font=('', 11, 'bold'), relief='groove', bg='#FF3333', fg='white', command=self.resetPassword)
+        b2.place(x=192, y=480, height=40)
+
+        b2 = Button(f3 ,text=" <- ", font=('', 11, 'bold'), relief='groove', bg='white', bd=1, command=self.loginPage)
+        b2.place(x=5, y=5)
+
+
+    
 
 
