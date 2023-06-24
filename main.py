@@ -17,6 +17,7 @@ class Form:
         self.home()
         self.root.mainloop()
     
+    
     def home(self):
         f1 = Frame(self.root, )
         f1.place(x=0, y=0, width=1536, height=864)
@@ -79,6 +80,7 @@ class Form:
         btn_login = Button(f2, text='Login', font=("Microsoft YaHei", 11), cursor='hand2', bd=0, bg='#ffffff', fg='blue', activebackground='#ffffff', activeforeground='green', relief='flat', command=self.loginPage)
         btn_login.place(x=382,y=538,)
 
+    
     def lblFrame(self, wn, txt, X, Y, w=220, h=56, enw = 200):
         lf = LabelFrame(wn, text=txt, font=('Microsoft YaHei', 10,), bg="white",)
         lf.place(x=X, y=Y, width=w, height=h,)
@@ -86,6 +88,7 @@ class Form:
         en.place(x=10, y=6, width=enw,)
         return en
 
+    
     def loginPage(self):
         f2 = Frame(self.root, )
         f2.place(x=0, y=0, width=1536, height=864)
@@ -123,6 +126,7 @@ class Form:
         btn2 = Button(f2, text='SignUp', font=("Microsoft YaHei", 11), cursor='hand2', bd=0, bg='#ffffff', fg='blue', activebackground='#ffffff', activeforeground='green', relief='flat', command=self.home)
         btn2.place(x=305,y=478,)
 
+    
     def otp(self):
         self.otp = str(randint(10000, 99999))
         msg = 'Hello, your OTP is '+str(self.otp)
@@ -144,6 +148,46 @@ class Form:
             server.quit()
         except Exception:
             messagebox.showerror('Email','Invalid Email ID')
+
+    
+    def reg(self):
+        fn = self.fname.get()
+        ln = self.lname.get()
+        e = self.user_email.get()
+        p = self.password.get()
+        cp = self.cpassword.get()
+        ph = self.phone.get()
+
+        if self.check.get()==1:
+            if fn!='' or ln!='' or p!='' or cp!='' or ph!='':
+                if p==cp: 
+                    if self.otp==self.user_otp.get():
+                        try:
+                            db = sqlite3.connect("User2.db")
+                            cr = db.cursor()
+                            cr.execute("INSERT INTO info VALUES('"+fn+"', '"+ln+"', '"+p+"', '"+ph+"', '"+e+"')")
+                            db.commit()
+                            db.close()
+                            messagebox.showinfo('Sign Up', 'Account Created Successfully')
+                            
+                            self.fname.set('')
+                            self.lname.set('')
+                            self.user_email.set('')
+                            self.password.set('')
+                            self.cpassword.set('')
+                            self.user_otp.set('')
+                            self.phone.set('')
+                            self.ck_box.deselect()
+                        except sqlite3.IntegrityError:
+                            messagebox.showwarning('Sign Up', 'Account Already Exists')
+                    else:
+                        messagebox.showerror('OTP', 'Enter Wrong OTP')
+                else:
+                    messagebox.showerror('Sign Up', 'Password does not Match')
+            else:
+                messagebox.showwarning('Sign Up', 'Fill all Entries')
+        else:
+            messagebox.showwarning('CheckBox', 'Please Agree Terms and Conditions')
 
 
 
