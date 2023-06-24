@@ -189,5 +189,27 @@ class Form:
         else:
             messagebox.showwarning('CheckBox', 'Please Agree Terms and Conditions')
 
+    def login(self): 
+        n = self.username.get()
+        p = self.user_pass.get()
+
+        if n!='' and p!='':
+            db = sqlite3.connect("User2.db")
+            cr = db.cursor()
+            r = cr.execute("SELECT * FROM info WHERE email=='"+n+"' AND password=='"+p+"'")
+            
+            for i in r:
+                messagebox.showinfo('Login', 'Login Successfully')
+                self.username.set('')
+                break
+            else:
+                messagebox.showerror('Login', 'Invalid Login id and Password')
+
+            self.user_pass.set('')
+            db.close()
+        else:
+            messagebox.showwarning('Login', 'Please Enter Email and Password')
+
+
 
 
